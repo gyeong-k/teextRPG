@@ -1,4 +1,4 @@
-#include "./include/battle.h"
+#include "../include/battle.h"
 #include <iostream>
 
 void battle(Player& player, Enemy& enemy) {

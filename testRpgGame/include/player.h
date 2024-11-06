@@ -6,7 +6,7 @@
 
 class Player : public Character {
     public:
-        Player(std::string n, int h, int a);
+        Player(std::string name, int health, int attackPower);
 
         void displayStatus();
 

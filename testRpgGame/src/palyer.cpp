@@ -1,7 +1,7 @@
-#include "./include/player.h"
+#include "../include/player.h"
 #include <iostream>
 
-Player::Player (std::string n, int h, int a) : Character (name, health, attackPower) {};
+Player::Player (std::string name, int health, int attackPower) : Character (name, health, attackPower) {};
 
 //플레이어 상태 출력
 void Player::displayStatus() {

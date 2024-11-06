@@ -1,7 +1,7 @@
-#include "./include/character.h"
-//#include <string>
+#include "../include/character.h"
+#include <string>
 
-Character::Character (std::string n, int h, int a) : name(n), health(h), attackPower(a) {};
+Character::Character (std::string name, int health, int attackPower) : name(name), health(health), attackPower(attackPower) {};
 
 void Character :: takeDamge(int damage) {
     health -= damage;
