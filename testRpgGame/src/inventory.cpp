@@ -14,8 +14,8 @@ void Inventory::increase_item(double health_default_increase, double attackPower
     std::mt19937 generator(static_cast<unsigned int>(std::time(0)));    //현재 시간 시드 설정 => int로 변환
 
     //정수 범위 난수 생성
-    std::uniform_int_distribution<int> distribution_h(40,50); 
-    std::uniform_int_distribution<int> distribution_a(50,60);    
+    std::uniform_int_distribution<int> distribution_h(20,30); 
+    std::uniform_int_distribution<int> distribution_a(30,40);    
 
     int randomHealth = distribution_h(generator);       //생명 증가 비율
     int randomAttackPower = distribution_a(generator);  //공격력 증가 비율
@@ -35,7 +35,7 @@ void Inventory::increaseHealthItem(double healthDefaulIncrease) {
     //난수 생성기 초기화
     std::mt19937 generator(static_cast<unsigned int>(std::time(0)));    //현재 시간 시드 설정 => int로 변환
     //정수 범위 난수 생성
-    std::uniform_int_distribution<int> distribution_h(40,50); 
+    std::uniform_int_distribution<int> distribution_h(20,25); 
 
     int randomHealth = distribution_h(generator);       //생명 증가 비율
     //생명 아이템 값
@@ -47,7 +47,7 @@ void Inventory::increaseAttackPowerItem(double healthDefaultIncrease) {
     //난수 생성기 초기화
     std::mt19937 generator(static_cast<unsigned int>(std::time(0)));    //현재 시간 시드 설정 => int로 변환
     //정수 범위 난수 생성
-    std::uniform_int_distribution<int> distribution_a(50,60); 
+    std::uniform_int_distribution<int> distribution_a(30,35); 
     int randomAttackPower = distribution_a(generator);  //공격력 증가 비율
 
     //공격력 아이템 값

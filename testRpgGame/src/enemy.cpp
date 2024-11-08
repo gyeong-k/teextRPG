@@ -11,8 +11,8 @@ void Enemy::increaseEnemySkill(){
     std::mt19937 generator(static_cast<unsigned int>(std::time(0)));   
 
     //정수 범위 난수 생성
-    std::uniform_int_distribution<int> distribution_h(10,12); 
-    std::uniform_int_distribution<int> distribution_a(8,10);    
+    std::uniform_int_distribution<int> distribution_h(10,18); 
+    std::uniform_int_distribution<int> distribution_a(15,23);    
 
     int randomHealth = distribution_h(generator);       //생명 증가 랜덤 비율
     int randomPower = distribution_a(generator);       //공격 증가 랜덤 비율
