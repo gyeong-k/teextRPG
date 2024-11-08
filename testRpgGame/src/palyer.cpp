@@ -23,11 +23,11 @@ void Player::increase_player() {
     int randomHealth = distribution_h(generator);       //생명 증가 비율
     int randomAttackPower = distribution_a(generator);  //공격력 증가 비율
     
-    std::cout<< "기본 증가 전 : " << health <<","<<attackPower <<"\n";
-    std::cout << health * randomHealth * 0.01 << " , " << attackPower * randomAttackPower * 0.01 <<"\n";
+    //std::cout<< "기본 증가 전 : " << health <<","<<attackPower <<"\n";
+    //std::cout << health * randomHealth * 0.01 << " , " << attackPower * randomAttackPower * 0.01 <<"\n";
     health += health * randomHealth * 0.01;
     attackPower += attackPower * randomAttackPower * 0.01;
-    std::cout<< "기본 증가 후 : " << health <<","<<attackPower <<"\n";
+    //std::cout<< "기본 증가 후 : " << health <<","<<attackPower <<"\n";
 }
 
 

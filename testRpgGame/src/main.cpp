@@ -16,6 +16,7 @@ void processLevelUp (Player& player, Enemy& enemy, Inventory& item);
 
 
 int main() {
+    //세이브 기능은 매 case 시작할때만 5 레벨씩 가능하게 해주기
     int level = 1;
     bool result;
 
@@ -31,7 +32,7 @@ int main() {
 
     for (size_t i = 1; i <= 50 ; i++) {
         Enemy& enemy = enemies[(i-1) / 5];
-        enemy.print();
+        
         switch ((i-1) / 5)
         {
             case 0: //1~5
@@ -138,6 +139,7 @@ bool processBattleRound(Enemy& enemy, int num , Player& player, Inventory& item)
 
     //적의 수만큼 반복
     for (size_t i =1 ; i < num +1 ; i++){
+        std::cout << "\n"<< "\n"<< "\n"<< " 레벨 " << player.level << " - 배틀 시작" << "\n";
         std::cout << " 레벨 " << player.level << "\n";
         std::cout << " 적 정보 :  " << enemy.health << ", "<< enemy.attackPower  << "\n";
         //먼저 배틀
@@ -211,7 +213,7 @@ void processLevelUp (Player& player,Enemy& enemy, Inventory& item) {
     enemy.increaseEnemySkill();
     std::cout << "체력 : "<< player.health << "     공격력 : "<< player.attackPower  << "\n";
 
-    std::cout << "======================== 레벨 UP =========================" << "\n";
+    std::cout << "============================================================" << "\n";
 
     while(1) {
         //아이템 선택 해서 플레이어 능력치 변경
