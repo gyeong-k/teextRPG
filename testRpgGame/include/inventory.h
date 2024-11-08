@@ -1,19 +1,20 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
-
+#include "../include/player.h"
+//생명 아이템
+//
 class Inventory {
     public:
-        int health_item;
-        int attackPower_item;
-    
-    //item 성능 값 반환
-    void increase_item() {
-        //기준 사이에서 랜덤하게 높일 난수 생성, 생몀 공격력 각각 다른 난수
-        //매레밸 
-        //공력력 아이템 높여
-        //생명령 아이템 높여
-        //각 아이탬 성능 반환해
-    }
-}
+        double health_item;
+        double attackPower_item;
+
+        // Inventory() = default;  // 기본 생성자 추가
+        Inventory (double health_item, double attackPower_item);
+
+        void increase_item(double health_default_increase, double attackPower_default_increase);
+        void increaseHealthItem(double healthDefaulIncrease);
+        void increaseAttackPowerItem(double healthDefaultIncrease);
+
+};
 
 #endif

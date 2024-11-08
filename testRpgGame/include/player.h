@@ -2,14 +2,15 @@
 #define PLAYER_H
 
 #include <string>
-#include <vector>
 #include "character.h"
 
 class Player : public Character {
     public:
-        Player(std::string name, int health, int attackPower);
+        int level;
+        Player(std::string name, double health, double attackPower, int level);
 
         void displayStatus();
+        void increase_player();
 
 };
 

@@ -1,9 +1,9 @@
 #include "../include/character.h"
 #include <string>
 
-Character::Character (std::string name, int health, int attackPower) : name(name), health(health), attackPower(attackPower) {};
+Character::Character (std::string name, double health, double attackPower) : name(name), health(health), attackPower(attackPower) {};
 
-void Character :: takeDamge(int damage) {
+void Character :: takeDamge(double damage) {
     health -= damage;
     if (health < 0) health = 0;
 }
