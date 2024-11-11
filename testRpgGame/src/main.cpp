@@ -3,6 +3,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
+#include <fstream>
 #include "../include/battle.h"
 #include "../include/character.h"
 #include "../include/enemy.h"
@@ -14,11 +15,13 @@
 std::vector<Enemy> makeEnemies();
 bool processBattleRound(Enemy& enemy, int num , Player& player, Inventory& item) ;
 void processLevelUp (Player& player, Enemy& enemy, Inventory& item);
-bool isFileEmpty (std::string& fileName) ;
+bool isFileEmpty(const std::string& filename) ;
+
 
 
 int main() {
     //세이브 기능은 매 case 시작할때만 5 레벨씩 가능하게 해주기
+    //세이브 파일 이름
     std::string filename = "gameState.txt";
     
     int level = 1;
@@ -27,9 +30,17 @@ int main() {
     //플레이어 생성
     Player player("Hero", 100, 20, level);
     player.displayStatus();
-    
+
     //아이템 생성
     Inventory item(player.health*0.1, player.attackPower*0.07); 
+
+
+    //세이브 파일에 데이터가 있으면 위 초기화 변수에 데이터 넣어주기
+    if (!isFileEmpty(filename)) {
+        GameState gameState(player, item);
+        gameState.load(filename);
+    }
+
 
     //적의 vector 생성
     std::vector<Enemy> enemies = makeEnemies();
@@ -100,13 +111,37 @@ int main() {
                 std::cout << "적이 존재하지 않습니다." << "\n";
                 break;
         }
-        if (result)  processLevelUp(player, enemy, item);
+        if (result) { 
+            processLevelUp(player, enemy, item);
+        }
         if (!player.isAlive()) {
             std::cout << "============================================" << "\n" << "\n";
 
             std::cout << "사망 - 최종 레벨: "<< player.level << "\n";
+            //세이브 파일 초기화하기
+            std::ofstream file(filename, std::ios::trunc);
+            if(file.is_open()) {
+                file.close();
+                std::cout << "File has been emptied successfully.\n";
+            } else {
+                std::cerr << "Failed to open file.\n";
+            }
+
             break;
         }     
+        if(i%5 == 0) {
+            int choose;
+            std::cout << "세이브하시겠습니까?" << "\n";
+            std::cout << "1 : 세이브" << "\n";
+            std::cin >> choose;
+            if (choose == 1) {
+                GameState gameState(player, item);
+                gameState.save(filename);
+                std::cout << "게임이 저장되었습니다." << "\n";
+            } else {
+                std::cout << "게임을 저장 없이 진행합니다." << "\n";
+            }
+        }
     }
     
     return 0;
@@ -247,5 +282,19 @@ void processLevelUp (Player& player,Enemy& enemy, Inventory& item) {
 
 
 bool isFileEmpty(const std::string& filename) {
+    try {
+        std::ifstream file(filename, std::ios::binary | std::ios::ate);  // 파일을 끝 위치에서 열기
+        if (!file.is_open()) {
+            std::cerr << "Failed to open file." << std::endl;
+            return false;
+        }
 
+        // 파일의 크기를 확인
+        std::streamsize fileSize = file.tellg();  // 파일 크기
+        file.close();
+        return fileSize == 0;  // 파일 크기가 0이면 빈 파일
+    } catch (const std::ios_base::failure& e) {
+        std::cerr << "파일 예외 발생: " << e.what() << std::endl;
+        return true;  // 파일이 비어 있다고 가정하고 처리
+    }
 }
