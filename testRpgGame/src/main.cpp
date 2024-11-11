@@ -8,15 +8,19 @@
 #include "../include/enemy.h"
 #include "../include/player.h"
 #include "../include/inventory.h"
+#include "../include/gameState.h"
+
 
 std::vector<Enemy> makeEnemies();
 bool processBattleRound(Enemy& enemy, int num , Player& player, Inventory& item) ;
 void processLevelUp (Player& player, Enemy& enemy, Inventory& item);
-
+bool isFileEmpty (std::string& fileName) ;
 
 
 int main() {
     //세이브 기능은 매 case 시작할때만 5 레벨씩 가능하게 해주기
+    std::string filename = "gameState.txt";
+    
     int level = 1;
     bool result;
 
@@ -242,3 +246,6 @@ void processLevelUp (Player& player,Enemy& enemy, Inventory& item) {
 }
 
 
+bool isFileEmpty(const std::string& filename) {
+
+}
